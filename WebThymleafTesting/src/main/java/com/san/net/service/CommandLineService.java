@@ -7,45 +7,51 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.san.net.model.Address;
-import com.san.net.model.Hotel;
-import com.san.net.model.Review;
+import com.san.net.domain.AddressMongoDomain;
+import com.san.net.domain.HotelMongoDomain;
+import com.san.net.domain.ReviewMongoDomain;
+import com.san.net.domain.UserRegistrationMongoDomain;
 import com.san.net.repo.HotelRepository;
+import com.san.net.repo.UserRegistrationRepository;
 
 @Component
-public class CommandLineService implements CommandLineRunner {
+public class CommandLineService implements CommandLineRunner  {
 	
 	@Autowired
 	HotelRepository hotelRepository;
+	
+	@Autowired
+	UserRegistrationRepository userRepo;
 
-	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("run command line");
 		
-		Review goodReview=new Review("good");
-		Review betterReview=new Review("better");
-		Review bestReview=new Review("best");
-		Review okReview=new Review("ok");
-		Review neautralReview=new Review("neutaral");
+		ReviewMongoDomain goodReview=new ReviewMongoDomain("good");
+		ReviewMongoDomain betterReview=new ReviewMongoDomain("better");
+		ReviewMongoDomain bestReview=new ReviewMongoDomain("best");
+		ReviewMongoDomain okReview=new ReviewMongoDomain("ok");
+		ReviewMongoDomain neautralReview=new ReviewMongoDomain("neutaral");
 		
-		Address puneAdrress=new Address("Pune");
-		Address mumbaiAdrress=new Address("Mumbai");
-		Address bangaloreAdrress=new Address("Bangalore");
-		Address delhiAddress=new Address("Delhi");
-		Address biharAddress=new Address("Bihar");
+		AddressMongoDomain puneAdrress=new AddressMongoDomain("Pune");
+		AddressMongoDomain mumbaiAdrress=new AddressMongoDomain("Mumbai");
+		AddressMongoDomain bangaloreAdrress=new AddressMongoDomain("Bangalore");
+		AddressMongoDomain delhiAddress=new AddressMongoDomain("Delhi");
+		AddressMongoDomain biharAddress=new AddressMongoDomain("Bihar");
 		
-		Hotel a=new Hotel("A",100,puneAdrress,Arrays.asList(bestReview,betterReview));
-		Hotel b=new Hotel("B",200,mumbaiAdrress,Arrays.asList(goodReview,betterReview));
-		Hotel c=new Hotel("C",300,bangaloreAdrress,Arrays.asList(bestReview,goodReview));
-		Hotel d=new Hotel("d",400,delhiAddress,Arrays.asList(bestReview,okReview));
-		Hotel e=new Hotel("e",500,biharAddress,Arrays.asList(neautralReview,goodReview));
+		HotelMongoDomain a=new HotelMongoDomain("A",100,puneAdrress,Arrays.asList(bestReview,betterReview));
+		HotelMongoDomain b=new HotelMongoDomain("B",200,mumbaiAdrress,Arrays.asList(goodReview,betterReview));
+		HotelMongoDomain c=new HotelMongoDomain("C",300,bangaloreAdrress,Arrays.asList(bestReview,goodReview));
+		HotelMongoDomain d=new HotelMongoDomain("d",400,delhiAddress,Arrays.asList(bestReview,okReview));
+		HotelMongoDomain e=new HotelMongoDomain("e",500,biharAddress,Arrays.asList(neautralReview,goodReview));
 		
-		List<Hotel> hotels=Arrays.asList(a,b,c,d,e);
+		List<HotelMongoDomain> hotels=Arrays.asList(a,b,c,d,e);
 		
 		hotelRepository.deleteAll();
 		
 		hotelRepository.saveAll(hotels);
 		
+		UserRegistrationMongoDomain userDomain=new UserRegistrationMongoDomain("sunil", "sunilkumaryadavjava@gmail.com", "122345", "Male", "i love java programming", "15011986", true, "developer");
+		userRepo.save(userDomain);
 		
 	}
 

@@ -1,4 +1,4 @@
-package com.san.net.model;
+package com.san.net.domain;
 
 import java.util.List;
 
@@ -8,17 +8,17 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "HotelDB")
-public class Hotel {
+public class HotelMongoDomain {
 
 	@Id
 	String id;
 	String name;
 	@Indexed(direction = IndexDirection.ASCENDING)
 	int pricePerNight;
-	Address address;
-	List<Review> review;
+	AddressMongoDomain address;
+	List<ReviewMongoDomain> review;
 	
-	public Hotel(String name, int pricePerNight, Address address, List<Review> review) {
+	public HotelMongoDomain(String name, int pricePerNight, AddressMongoDomain address, List<ReviewMongoDomain> review) {
 		super();
 		this.name = name;
 		this.pricePerNight = pricePerNight;
@@ -50,19 +50,19 @@ public class Hotel {
 		this.pricePerNight = pricePerNight;
 	}
 
-	public Address getAddress() {
+	public AddressMongoDomain getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(AddressMongoDomain address) {
 		this.address = address;
 	}
 
-	public List<Review> getReview() {
+	public List<ReviewMongoDomain> getReview() {
 		return review;
 	}
 
-	public void setReview(List<Review> review) {
+	public void setReview(List<ReviewMongoDomain> review) {
 		this.review = review;
 	}
 	

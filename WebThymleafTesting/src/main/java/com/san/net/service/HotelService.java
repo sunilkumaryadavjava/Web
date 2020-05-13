@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.san.net.model.Hotel;
+import com.san.net.domain.HotelMongoDomain;
 import com.san.net.repo.HotelRepository;
 
 @Service
@@ -15,38 +15,38 @@ public class HotelService {
 	@Autowired
 	HotelRepository hotelRepository;
 	
-	public List<Hotel> getHotelsDetails(){
+	public List<HotelMongoDomain> getHotelsDetails(){
 		return hotelRepository.findAll();
 	}
 	
-	public Hotel createRecord(Hotel hotel) {
+	public HotelMongoDomain createRecord(HotelMongoDomain hotel) {
 		return hotelRepository.insert(hotel);
 	}
-	public Hotel updateRecord(Hotel hotel) {
+	public HotelMongoDomain updateRecord(HotelMongoDomain hotel) {
 		return hotelRepository.save(hotel);
 	}
 	public void deleteHotelDetailsById(String id) {
 		 hotelRepository.deleteById(id);
 	}
 
-	public Optional<Hotel> findById(String id) {
+	public Optional<HotelMongoDomain> findById(String id) {
 		return hotelRepository.findById(id);
 	}
 	
-	public List<Hotel> findByPricePerNightLessThan(int amount){
+	public List<HotelMongoDomain> findByPricePerNightLessThan(int amount){
 		return hotelRepository.findByPricePerNightLessThan(amount);
 	}
 	
-	public List<Hotel> findHotelByAddressCity(String city){
-		return hotelRepository.findHotelByAddressCity(city);
-	}
-	
-	public List<Hotel> getHotelByAddressCity(String city){
-//		QHotel q=new QHotel("hotel");
-//		BooleanExpression 
-		
-		return hotelRepository.getHotelByAddressCity(city);
-	}
+//	public List<HotelMongoDomain> findHotelByAddressCity(String city){
+//		return hotelRepository.findHotelByAddressCity(city);
+//	}
+//	
+//	public List<HotelMongoDomain> getHotelByAddressCity(String city){
+////		QHotel q=new QHotel("hotel");
+////		BooleanExpression 
+//		
+//		return hotelRepository.getHotelByAddressCity(city);
+//	}
 	
 	
 }

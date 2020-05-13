@@ -1,6 +1,6 @@
-package com.san.net.model;
+package com.san.net.domain;
 
-public class Review {
+public class ReviewMongoDomain {
 
 	String review;
 
@@ -12,11 +12,11 @@ public class Review {
 		this.review = review;
 	}
 
-	public Review(String review) {
+	public ReviewMongoDomain(String review) {
 		super();
 		this.review = review;
 	}
-	public Review() {}
+	public ReviewMongoDomain() {}
 	
 	
 	

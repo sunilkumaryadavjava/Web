@@ -1,6 +1,6 @@
-package com.san.net.model;
+package com.san.net.domain;
 
-public class Address {
+public class AddressMongoDomain {
 
 	String city;
 
@@ -12,12 +12,12 @@ public class Address {
 		this.city = city;
 	}
 
-	public Address(String city) {
+	public AddressMongoDomain(String city) {
 		super();
 		this.city = city;
 	}
 	
-	public Address() {}
+	public AddressMongoDomain() {}
 	
 	
 }
