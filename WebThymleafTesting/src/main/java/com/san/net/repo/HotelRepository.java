@@ -14,13 +14,9 @@ public interface HotelRepository extends MongoRepository<HotelMongoDomain, Strin
  Optional<HotelMongoDomain> findById(String id);
 List<HotelMongoDomain> findByPricePerNightLessThan(int amount);
 
-//@Query(value = "{address.city:?0}")
-//List<HotelMongoDomain> findHotelByAddressCity(String city);
-//
-//List<HotelMongoDomain> getHotelByAddressCity(String city);
-
-
-
+@Query(value = "{address.city:?0}")
+List<HotelMongoDomain> findHotelByAddressCity(String citys);
+List<HotelMongoDomain> findByName(String hotelName);
 
 
 }

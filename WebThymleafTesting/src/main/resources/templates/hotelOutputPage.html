@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Hotel Output Page</title>
+<style type="text/css">
+span {
+	display: inline-block;
+	width: 150px;
+	text-align: left;	
+}
+table, th, td {  
+  border: 2px solid black;  
+  border-collapse: collapse;  
+} 
+</style>
+</head>
+<body>
+<div align="center">
+
+<h3>Hotel Output Page</h3>
+<div th:text="${#ctx.locale}">locale</div>
+<p th:text="${#dates.createNow()}"></p>
+<p th:text="${#dates.createToday()}"></p>
+<!-- <p th:text="${#dates.format(#dates.createToday(),'dd/MMM/yyyy')"></p> -->
+
+<div th:if="${hotel.isEmpty()}">
+No data available for given hotel name
+</div>
+
+<div  th:each="hotel : ${hotel}" > 
+
+<span> name:</span><span th:text="${hotel.name}"></span><br>
+<span>pricePerNight:</span><span th:text="${hotel.pricePerNight}"></span><br>
+<span>address:</span><span th:text="${hotel.address.city}"></span><br>
+<span>review:</span><span th:each="rev: ${hotel.review}" th:text="${rev.review}"></span><br>
+
+<div th:if="${hotel.menu}==null">
+no menu available, cooking going on. menu will come soon
+</div>
+<div th:unless="${hotel.menu}==null">
+<table border="1">
+<thead>
+<tr><th>Day</th><th>BreakFast</th><th>Lunch</th><th>Dinner</th></tr>
+</thead>
+<tbody>
+
+<tr th:each="m :${hotel.menu}">
+<td><span th:text="${m.day}">Day</span></td>
+<td> <span th:text="${m.breakfast}">Breakfast</span></td>
+<td ><span th:text="${m.lunch}">Lunch</span></td>
+<td ><span th:text="${m.dinner}">Dinner</span></td>
+
+</tr>
+
+</tbody>
+</table>
+</div>
+<br>
+</div>
+<a href="/hotelInfo"> Get Another Hotel Details</a>
+</div>
+</body>
+</html>

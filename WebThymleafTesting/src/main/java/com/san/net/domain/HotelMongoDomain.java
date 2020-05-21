@@ -17,13 +17,17 @@ public class HotelMongoDomain {
 	int pricePerNight;
 	AddressMongoDomain address;
 	List<ReviewMongoDomain> review;
+	List<Menu> menu;
 	
-	public HotelMongoDomain(String name, int pricePerNight, AddressMongoDomain address, List<ReviewMongoDomain> review) {
+	public HotelMongoDomain(){}
+	
+	public HotelMongoDomain(String name, int pricePerNight, AddressMongoDomain address, List<ReviewMongoDomain> review,List<Menu> menu) {
 		super();
 		this.name = name;
 		this.pricePerNight = pricePerNight;
 		this.address = address;
 		this.review = review;
+		this.menu=menu;
 	}
 
 	public String getId() {
@@ -65,5 +69,15 @@ public class HotelMongoDomain {
 	public void setReview(List<ReviewMongoDomain> review) {
 		this.review = review;
 	}
+
+	public List<Menu> getMenu() {
+		return menu;
+	}
+
+	public void setMenu(List<Menu> menu) {
+		this.menu = menu;
+	}
+	
+	
 	
 }

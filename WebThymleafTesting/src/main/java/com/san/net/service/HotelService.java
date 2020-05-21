@@ -37,9 +37,9 @@ public class HotelService {
 		return hotelRepository.findByPricePerNightLessThan(amount);
 	}
 	
-//	public List<HotelMongoDomain> findHotelByAddressCity(String city){
-//		return hotelRepository.findHotelByAddressCity(city);
-//	}
+	public List<HotelMongoDomain> findHotelByAddressCity(String city){
+		return hotelRepository.findHotelByAddressCity(city);
+	}
 //	
 //	public List<HotelMongoDomain> getHotelByAddressCity(String city){
 ////		QHotel q=new QHotel("hotel");
@@ -47,6 +47,11 @@ public class HotelService {
 //		
 //		return hotelRepository.getHotelByAddressCity(city);
 //	}
+
+	public List<HotelMongoDomain> findByName(String hotelName) {
+		return hotelRepository.findByName(hotelName);
+		
+	}
 	
 	
 }

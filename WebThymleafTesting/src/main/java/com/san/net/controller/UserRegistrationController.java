@@ -3,6 +3,8 @@ package com.san.net.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +32,8 @@ public class UserRegistrationController {
 		
 	}
 	@PostMapping(value ="/registerForm")
-	public String doRegistration(@ModelAttribute("userRegistration") UserRegistration ur) {
+	public String doRegistration(HttpServletRequest req,@ModelAttribute("userRegistrations") UserRegistration urs, Model model) {
+		UserRegistration ur=(UserRegistration) model.getAttribute("userRegistrations");
 		System.out.println(ur);
 		UserRegistrationMongoDomain domain=new UserRegistrationMongoDomain();
 		domain.setDob(ur.getDob());
@@ -41,7 +44,9 @@ public class UserRegistrationController {
 		domain.setPassword(ur.getPassword());
 		domain.setProfessional(ur.getProfessional());
 		domain.setMarried(ur.getMarried());
-		userService.insert(domain);
+		UserRegistrationMongoDomain saveDomain=userService.insert(domain);
+		model.addAttribute("userRegistration", saveDomain);
+		
 		return "registrationSuccess";
 		
 	}
